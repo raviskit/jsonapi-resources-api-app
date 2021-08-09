@@ -15,7 +15,9 @@ module Api
       private
 
       def update_courses
-        @coach.courses.update(coach_id: Coach.last.id)
+        another_coach = Coach.last
+        raise StandardError.new("No coaches found") if another_coach.nil?
+        @coach.courses.update(coach_id: another_coach.id)
       end
     end
   end
