@@ -4,6 +4,8 @@ module Api
 
       def destroy
         @coach = Coach.find(params[:id])
+        raise StandardError.new("No coach available") if @coach.courses.any? && Coach.count == 0
+
         if @coach.destroy
           update_courses
           render json: {message: "Coach deleted successfully"}, status: 200
@@ -15,9 +17,7 @@ module Api
       private
 
       def update_courses
-        another_coach = Coach.last
-        raise StandardError.new("No coaches found") if another_coach.nil?
-        @coach.courses.update(coach_id: another_coach.id)
+        @coach.courses.update(coach_id: Coach.last.id)
       end
     end
   end
