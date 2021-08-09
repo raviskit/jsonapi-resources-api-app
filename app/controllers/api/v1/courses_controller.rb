@@ -1,6 +1,6 @@
 module Api
   module V1
-    class CoursesController < JSONAPI::ResourceController
+    class CoursesController < ApplicationController
     end
   end
 end

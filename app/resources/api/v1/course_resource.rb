@@ -7,6 +7,10 @@ module Api
       has_one :coach
 
       filter :self_assignable
+
+      def coach
+        @model.coach.to_json
+      end
     end
   end
 end
