@@ -4,7 +4,7 @@ module Api
 
       def destroy
         @coach = Coach.find(params[:id])
-        raise StandardError.new("No coach available") if @coach.courses.any? && Coach.count == 0
+        raise StandardError.new("No coach available") if @coach.courses.any? && Coach.count == 1
 
         if @coach.destroy
           update_courses
